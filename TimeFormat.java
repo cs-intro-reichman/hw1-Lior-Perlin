@@ -12,6 +12,41 @@ public class TimeFormat {
 		int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
 		// Does the same with the minutes part of the input.
 		int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
-        // Replace this comment with the rest of your code
+        boolean PM = (hours >= 12); // Checking if it's AM/PM
+		if(hours > 12) { // If it's higher then 12, then we need to change to format to 12H
+			hours %= 12;
+		}
+		String newTime = ""; // variable for the outprint.
+		if(hours < 10) { // Making sure the time is written currectly (with "0" at the start when necessary)
+            if(hours == 0) {
+                newTime += "00";
+            }
+			
+            else {
+                newTime += "0" + hours;
+            }
+        }
+        else {
+            newTime += hours;
+        }
+        newTime += ":";  // Not forgetting the colon
+        if(minutes < 10) { // (Same as hours just to minutes) Making sure the time is written currectly (with "0" at the start when necessary)
+            if(minutes == 0) {
+                newTime += "00";
+            }
+        else {
+                newTime += "0" + minutes;
+            }
+        }
+        else {
+            newTime += minutes;
+        }
+		if(PM) { // Adding the AM/PM at the end respectivly
+			newTime += " PM";
+		}
+		else {
+			newTime += " AM";
+		}
+		System.out.println(newTime);
 	}
 }
